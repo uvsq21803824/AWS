@@ -1,0 +1,28 @@
+html{
+    /*background-color : yellow;*/
+    background-image:url(265206.jpg);
+  }
+  
+  h1{
+    color: yellow;
+    font-size : 80px;
+    /*text-align :center;*/
+    font-style: italic;
+    font-weight: bold;
+    text-decoration : underline;
+  }
+
+  p{
+      color: yellow;
+    font-size : 50px;
+    /*text-align :center;*/
+    font-weight: bold;
+    margin-top: 100px;
+  }
+  
+  a{
+    background-color: greenyellow;
+  }
+
+  
+  

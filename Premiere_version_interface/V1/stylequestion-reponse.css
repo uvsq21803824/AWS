@@ -1,0 +1,70 @@
+html{
+    /*background-color : Orange;*/
+    background-image:url(thumb-1920-26102.jpg); /*Si on veut mettre une photo*/
+  }
+  
+  h1 {
+    color: goldenrod;
+    text-align :center;
+    font-style: italic;
+    font-weight: bold;
+    text-decoration : underline;
+    font-size : 60px;
+  }
+  
+  table {
+    border: 5px solid black;
+    margin : auto;
+    text-align :center;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 25px;
+  }
+  
+  td {
+    color: black;
+    border: 3px solid black;
+    width: 500px;
+    height: 200px;
+  }
+  
+  .false{
+    background-color : red;
+  }
+  
+  .true{
+    background-color : green;
+  }
+
+  p{
+    color: gold;
+    font-size : 40px;
+  }
+
+  p0{
+    color: gold;
+    font-size : 40px;
+    text-align :center;
+  }
+
+  p1{
+    color: gold;
+    font-size : 40px;
+    text-align :center;
+  }
+
+  p2{
+    color: gold;
+    font-size : 40px;
+    text-align :center;
+    text-align: end ;
+  }
+
+  a{
+    font-size : 20px;
+    text-align :center;
+    font-weight: bold;
+    margin-top: 100px;
+    background-color: beige;
+  }
+  
