@@ -1,0 +1,73 @@
+CREATE TABLE genre (
+	ID INT NOT NULL,
+    genre VARCHAR(256),
+	PRIMARY KEY (ID)
+);
+
+CREATE TABLE difficulty (
+	ID INT NOT NULL,
+    difficulty VARCHAR(256),
+	PRIMARY KEY (ID)
+);
+
+CREATE TABLE question (
+	ID INT NOT NULL,
+    question VARCHAR(2048) NOT NULL,
+    reponse0 VARCHAR(1024)NOT NULL,
+    reponse1 VARCHAR(1024)NOT NULL,
+    reponse2 VARCHAR(1024)NOT NULL,
+    reponse3 VARCHAR(1024)NOT NULL,
+    genre_id INT NOT NULL,
+    difficulty_id INT NOT NULL,
+    link VARCHAR(2048),
+    PRIMARY KEY (ID),
+    FOREIGN KEY (genre_id) REFERENCES genre(ID),
+    FOREIGN KEY (difficulty_id) REFERENCES difficulty(ID)
+);
+
+INSERT INTO genre(ID, genre) VALUES (1, 'Géographie');
+INSERT INTO genre(ID, genre) VALUES (2, 'Histoire');
+INSERT INTO genre(ID, genre) VALUES (3, 'Maths');
+INSERT INTO genre(ID, genre) VALUES (4, 'SVT');
+INSERT INTO genre(ID, genre) VALUES (5, 'Films & Séries');
+
+INSERT INTO difficulty(ID, difficulty) VALUES (1, 'Facile');
+INSERT INTO difficulty(ID, difficulty) VALUES (2, 'Moyen');
+INSERT INTO difficulty(ID, difficulty) VALUES (3, 'Difficile');
+
+INSERT INTO question(ID, question, reponse0, reponse1, reponse2, reponse3, genre_id, difficulty_id)
+VALUES (1, "Quelle est la capitale de la France ?", "Paris", "Marseille", "Nantes", "Bordeaux", 1, 1);
+INSERT INTO question(ID, question, reponse0, reponse1, reponse2, reponse3, genre_id, difficulty_id)
+VALUES (2, "Quelle est la capitale du Danemark ?", "Copenhague", "Helsinki", "Stockholm", "Oslo", 1, 2);
+INSERT INTO question(ID, question, reponse0, reponse1, reponse2, reponse3, genre_id, difficulty_id)
+VALUES (3, "Quelle est la superficie du Groenland ?", "2 166 086 km2", "4 224 103 km2", "1 684 200 km2", "3 855 023 km2", 1, 3);
+
+INSERT INTO question(ID, question, reponse0, reponse1, reponse2, reponse3, genre_id, difficulty_id)
+VALUES (4, "A quel evenement correspond la date du 14 juillet ?", "la prise de la Bastille", "l'armistice de 1918",
+ "la déclaration des droits de l'homme et du citoyen", "Sacre de Louis XIV", 2, 1);
+INSERT INTO question(ID, question, reponse0, reponse1, reponse2, reponse3, genre_id, difficulty_id)
+VALUES (5, "En quelle année Christophe Colomb à découvert l'Amérique ?", "1492", "1789", "1589", "1392", 2, 2);
+INSERT INTO question(ID, question, reponse0, reponse1, reponse2, reponse3, genre_id, difficulty_id)
+VALUES (6, "Quelle est la date de la defaite de Napoleon a Waterloo ?", "18 juin 1815", "18 juillet 1814", "18 juin 1814", "18 juillet 1815", 2, 3);
+
+INSERT INTO question(ID, question, reponse0, reponse1, reponse2, reponse3, genre_id, difficulty_id)
+VALUES (7, "7 * 7 =", "49", "42", "56", "31", 3, 1);
+INSERT INTO question(ID, question, reponse0, reponse1, reponse2, reponse3, genre_id, difficulty_id)
+VALUES (8, " 7 + 2 * -1 + 3 =", "8", "-6", "11", "12", 3, 2);
+INSERT INTO question(ID, question, reponse0, reponse1, reponse2, reponse3, genre_id, difficulty_id)
+VALUES (9, "Quelle est la racine carré de 441 ?", "21", "19", "22", "18", 3, 3);
+
+INSERT INTO question(ID, question, reponse0, reponse1, reponse2, reponse3, genre_id, difficulty_id)
+VALUES (13, "Quel est le premier super continent ?", "La Pangée", "La Poncée", "La Penchée", "La Plongée", 4, 1);
+INSERT INTO question(ID, question, reponse0, reponse1, reponse2, reponse3, genre_id, difficulty_id)
+VALUES (14, "Quel est le dernier cycle de la mitose (cycle cellulaire) ?", "Télophase", "Prophase", "Métaphase", "Anaphase", 4, 2);
+INSERT INTO question(ID, question, reponse0, reponse1, reponse2, reponse3, genre_id, difficulty_id)
+VALUES (15, "Quel est le rôle de l'histamine dans la réaction inflammatoire ?", "Augmenter la perméabilité de la paroi des vaisseaux sainguins", "Stimuler les récepteurs sensoriels", "Engendrer une hyperthermie", "Dilater les vaisseaux sanguins", 4, 3);
+
+INSERT INTO question(ID, question, reponse0, reponse1, reponse2, reponse3, genre_id, difficulty_id)
+VALUES (10, "Comment s'appelle le premier film de la saga Harry Potter ?", "Harry Potter à l'école des sorciers", "Harry Potter et la chambre des secrets", "Harry potter et la coupe de feu", "Harry potter et l'odre du phoenix", 5, 1);
+INSERT INTO question(ID, question, reponse0, reponse1, reponse2, reponse3, genre_id, difficulty_id)
+VALUES (11, "Quel est le premier film Star Wars ?", "Un nouvel espoir", "La revanche des sith", "Le reveil de la force", "L'ascension de Skywalker", 5, 2);
+INSERT INTO question(ID, question, reponse0, reponse1, reponse2, reponse3, genre_id, difficulty_id)
+VALUES (12, "En quelle année est sorti le premier Matrix ?", "1999", "1998", "2000", "2001", 5, 3);
+
