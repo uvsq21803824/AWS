@@ -1,5 +1,9 @@
 const User = require("../model/User");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+
+const jwtSecret =
+  "03f77e7c1a9b7dfdee0455185a6f2536bf34ddb46c78553761ccb1e94dd784ffb9df84";
 
 exports.register = async (req, res, next) => {
   const { username, password } = req.body;
@@ -11,12 +15,25 @@ exports.register = async (req, res, next) => {
       username,
       password: hash,
     })
-      .then((user) =>
-        res.status(200).json({
+      .then((user) => {
+        const maxAge = 3 * 60 * 60;
+        const token = jwt.sign(
+          { id: user._id, username, role: user.role },
+          jwtSecret,
+          {
+            expiresIn: maxAge, // 3hrs
+          }
+        );
+        res.cookie("jwt", token, {
+          httpOnly: true,
+          maxAge: maxAge * 1000,
+        });
+        res.status(201).json({
           message: "User successfully created",
-          user,
-        })
-      )
+          user: user._id,
+          role: user.role,
+        });
+      })
       .catch((error) =>
         res.status(400).json({
           message: "User not successful created",
@@ -25,16 +42,20 @@ exports.register = async (req, res, next) => {
       );
   });
 };
+
 exports.login = async (req, res, next) => {
   const { username, password } = req.body;
+
   // Check if username and password is provided
   if (!username || !password) {
     return res.status(400).json({
       message: "Username or Password not present",
     });
   }
+
   try {
     const user = await User.findOne({ username });
+
     if (!user) {
       res.status(400).json({
         message: "Login not successful",
@@ -43,12 +64,27 @@ exports.login = async (req, res, next) => {
     } else {
       // comparing given password with hashed password
       bcrypt.compare(password, user.password).then(function (result) {
-        result
-          ? res.status(200).json({
-              message: "Login successful",
-              user,
-            })
-          : res.status(400).json({ message: "Login not succesful" });
+        if (result) {
+          const maxAge = 3 * 60 * 60;
+          const token = jwt.sign(
+            { id: user._id, username, role: user.role },
+            jwtSecret,
+            {
+              expiresIn: maxAge, // 3hrs in sec
+            }
+          );
+          res.cookie("jwt", token, {
+            httpOnly: true,
+            maxAge: maxAge * 1000, // 3hrs in ms
+          });
+          res.status(201).json({
+            message: "User successfully Logged in",
+            user: user._id,
+            role: user.role,
+          });
+        } else {
+          res.status(400).json({ message: "Login not succesful" });
+        }
       });
     }
   } catch (error) {
@@ -99,6 +135,7 @@ exports.update = async (req, res, next) => {
     res.status(400).json({ message: "Role or Id not present" });
   }
 };
+
 exports.deleteUser = async (req, res, next) => {
   const { id } = req.body;
   await User.findById(id)
@@ -110,5 +147,23 @@ exports.deleteUser = async (req, res, next) => {
       res
         .status(400)
         .json({ message: "An error occurred", error: error.message })
+    );
+};
+
+exports.getUsers = async (req, res, next) => {
+  await User.find({})
+    .then((users) => {
+      const userFunction = users.map((user) => {
+        const container = {};
+        container.username = user.username;
+        container.role = user.role;
+        container.id = user._id;
+
+        return container;
+      });
+      res.status(200).json({ user: userFunction });
+    })
+    .catch((err) =>
+      res.status(401).json({ message: "Not successful", error: err.message })
     );
 };
