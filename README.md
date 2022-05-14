@@ -1,2 +1,2 @@
 # AWS
-The Hourglass
+Le Sablier
