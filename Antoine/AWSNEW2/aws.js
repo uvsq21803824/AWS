@@ -5,7 +5,6 @@
 
 	var genre = [];
 	var difficulty = [];
-	//var question = [];
 	let question = [];
 	let answers = [];
 	let q = [];
@@ -32,7 +31,7 @@
 	 res.render('index',{questions:JSON.stringify(q), answers:JSON.stringify(answers)});
 	});
 
-	app.listen(3001);
+	app.listen(3000);
 	console.log("Ouvert sur localhost:3000");
 	 
 	
@@ -91,35 +90,6 @@
 	}
 }	
 
-
-	// function loadData(){
-
-	// try {	
-
-	// 	con.connect();
-
-	// 	con.query("SELECT * FROM genre", function (err, tab) {
-	// 	if (err) throw err;
-	// 	setValue(1,tab);
-	// 	});
-
-	// 	con.query("SELECT * FROM difficulty", function (err, tab) {
-	// 	if (err) throw err;
-	// 	setValue(2,tab);
-	// 	});
-
-	// 	con.query("SELECT * FROM question", function (err, tab) {
-	// 	if (err) throw err;
-	// 	console.log(tab);
-	// 	setValue(3,tab);
-	// 	});
-	// } finally {
-	// 	con.end();
-	// }
-
-
-	// }
-
 	function setValue(n,value)
 	{
 		if(n === 1)
@@ -175,20 +145,6 @@
 			q[i] = question[i].question;
 			answers[i+1] = {entries:[r[0],r[1],r[2],r[3]], correct: c}
 		}
-		
-	/*	writeFile(qpath, JSON.stringify(q), (err) =>{
-			if (err){
-				console.log(err);
-				return;
-			}
-		});
-		
-		writeFile(apath, JSON.stringify(answers), (err) =>{
-			if (err){
-				console.log(err);
-				return;
-			}
-		}); */
 		
 		console.log("Données chargés avec succes!");
 
