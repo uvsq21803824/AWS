@@ -9,7 +9,7 @@
 
  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
- <script type="text/javascript" src="main.js" ></script>
+ <script type="text/javascript" src="mainsablier.js" ></script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-531949-22"></script>
@@ -40,8 +40,37 @@
     
     <br>
     <br>
-    <span class="q" id="question">Est ce que vous etes pret ?</span>
-    <h1><time>00:00:00</time></h1>
+    <span class="q" id="question">Est ce que vous etes pret ?</span>;
+    
+    <p id="Sablier"></p>
+    <script>
+      // Set the date we're counting down to
+      var minutesToAdd = 2;
+      var now = new Date().getTime();
+      var countDownDate = now + minutesToAdd*60000;
+
+      // Update the count down every 1 second
+      var x = setInterval(function() {
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for minutes and seconds
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="demo"
+        document.getElementById("Sablier").innerHTML = minutes + "m " + seconds + "s ";
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("Sablier").innerHTML = "EXPIRED";
+        }
+      }, 1000);
+    </script>
+
+    <!-- <h1><time>00:00:00</time></h1>
     <script>
         var h1 = document.getElementsByTagName('h1')[0];
         var start = document.getElementById('strt');
@@ -75,8 +104,7 @@
         }
 
         timer();
-        </script>
-    
+        </script> -->
 
     <div class="container-fluid">
       <div class="code-wrapper">
@@ -84,7 +112,7 @@
       <div class="button-container pb-5">
         
         <h5 class="m-4">
-            <b id="current">0</b> out of <b>15</b>
+            <b id="current">0</b> out of <b>200</b>
         </h5>
         <div class="options mb-4"></div>
        
