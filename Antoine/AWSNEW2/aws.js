@@ -35,7 +35,7 @@
 	});
 
 	app.listen(8000);
-	console.log("Ouvert sur localhost:3000");
+	console.log("Ouvert sur localhost:8000");
 	 
 	
 	async function sequentialQueries () {
